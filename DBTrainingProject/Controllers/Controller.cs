@@ -6,12 +6,12 @@ using DBTrainingProject.DB;
 
 namespace DBTrainingProject.Controllers;
 
-public class Controller
+public static class Controller
 {
-    private Db myDb = new Db();
-    private string connectionString;
+    private static Db myDb = new Db();
+    private static string connectionString;
 
-    public void CreateConnection(string connectionString)
+    public static void CreateConnection(string connectionString)
     {
         try
         {
@@ -24,7 +24,7 @@ public class Controller
         }
     }
 
-    public DataTable GetTable(string commandStr)
+    public static DataTable GetTable(string commandStr)
     {
         try
         {

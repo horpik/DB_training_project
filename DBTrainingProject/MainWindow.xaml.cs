@@ -1,18 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data;
+using System.Data.SqlClient;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using DBTrainingProject.Controllers;
+using DBTrainingProject.DB;
 
 namespace DBTrainingProject
 {
@@ -21,15 +12,24 @@ namespace DBTrainingProject
     /// </summary>
     public partial class MainWindow : Window
     {
+        private string connectionString;
+        private Controller controller;
+
         public MainWindow()
         {
             InitializeComponent();
+            controller = new Controller();
+            connectionString = "Server=CHARNELE;Database=DOROFEEV;User Id=CHARNELE\\horpi;Trusted_Connection=True;";
         }
 
-        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        private void ButtonConnection_OnClick(object sender, RoutedEventArgs e)
         {
-            this.Close();
-            
+            controller.CreateConnection(connectionString);
+        }
+
+        private void ButtonSelectTable_OnClick(object sender, RoutedEventArgs e)
+        {
+            StudentsGrid.ItemsSource = controller.GetTable("select * from forsales").DefaultView;
         }
     }
 }

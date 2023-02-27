@@ -31,7 +31,34 @@
                 FontSize="18"
                 Click="ButtonConnection_OnClick">
         </Button>
+
         <Grid Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="2"
+              Background="Azure"
+              Margin="15,15,15,15">
+            <TextBlock
+                Text="Input your name table"
+                VerticalAlignment="Top"
+                HorizontalAlignment="Center"
+                FontSize="13">
+            </TextBlock>
+            <TextBox Name="NameSelectTable"
+                     Text="ForSales"
+                     FontSize="18"
+                     VerticalAlignment="Bottom"
+                     TextWrapping="Wrap"
+                     MaxLines="2"
+                     MaxLength="100">
+            </TextBox>
+        </Grid>
+        <Button Name="ButtonAllowSelect"
+                Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="2"
+                Margin="15,15,15,15"
+                Content="Select all from table"
+                FontSize="18"
+                Click="ButtonAllowSelect_OnClick">
+        </Button>
+
+        <Grid Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="2"
               Background="Azure"
               Margin="15,15,15,15">
             <TextBlock
@@ -41,25 +68,49 @@
                 FontSize="16">
             </TextBlock>
             <TextBox Name="TextBoxCommand"
-                     Text="Input"
+                     Text=""
                      FontSize="18"
                      VerticalAlignment="Bottom"
-                     HorizontalAlignment="Center"
                      TextWrapping="Wrap"
                      MaxLines="2"
                      MaxLength="100">
             </TextBox>
         </Grid>
         <Button Name="ButtonAllowCommand"
-                Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="2"
+                Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="2"
                 Margin="15,15,15,15"
                 Content="Allow"
                 FontSize="18"
                 Click="ButtonAllowCommand_OnClick">
         </Button>
 
+        <Button Name="ButtonTableActions"
+                Grid.Column="2" Grid.Row="5" Grid.ColumnSpan="2"
+                Margin="15,15,15,15"
+                FontSize="18"
+                Click="ButtonTableActions_OnClick">
+            <TextBlock
+                Text="Table actions"
+                VerticalAlignment="Top"
+                HorizontalAlignment="Center"
+                FontSize="16">
+            </TextBlock>
+        </Button>
+        <Button Name="Update"
+                Grid.Column="2" Grid.Row="7" Grid.ColumnSpan="2"
+                Margin="15,15,15,15"
+                FontSize="18"
+                Click="Update_OnClick">
+            <TextBlock
+                Text="Update"
+                VerticalAlignment="Top"
+                HorizontalAlignment="Center"
+                FontSize="16">
+            </TextBlock>
+        </Button>
         <DataGrid Name="TableGrid"
                   Grid.Column="0" Grid.Row="0" Grid.RowSpan="8" Grid.ColumnSpan="2"
+                  IsReadOnly="True"
                   HorizontalAlignment="Left"
                   VerticalContentAlignment="Center"
                   Margin="10,10,0,0"

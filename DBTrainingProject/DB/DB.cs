@@ -16,9 +16,9 @@ public class Db
             connection = new SqlConnection(connectionString);
             MessageBox.Show("Подключение создано");
         }
-        catch (Exception e)
+        catch (Exception exception)
         {
-            MessageBox.Show(e.ToString());
+            MessageBox.Show(exception.ToString());
         }
     }
 
@@ -28,9 +28,9 @@ public class Db
         {
             if (connection.State == ConnectionState.Closed) connection.Open();
         }
-        catch (Exception e)
+        catch (Exception exception)
         {
-            MessageBox.Show(e.ToString());
+            MessageBox.Show(exception.ToString());
         }
        
     }
@@ -41,9 +41,9 @@ public class Db
         {
             if (connection.State == ConnectionState.Open) connection.Close();
         }
-        catch (Exception e)
+        catch (Exception exception)
         {
-            MessageBox.Show(e.ToString());
+            MessageBox.Show(exception.ToString());
         }
         
     }

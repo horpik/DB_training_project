@@ -2,6 +2,7 @@
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows;
+using System.Windows.Controls;
 using DBTrainingProject.Controllers;
 using DBTrainingProject.DB;
 
@@ -13,6 +14,7 @@ namespace DBTrainingProject
     public partial class MainWindow : Window
     {
         private string connectionString;
+        private string nameTable;
 
         public MainWindow()
         {
@@ -39,6 +41,42 @@ namespace DBTrainingProject
             {
                 Controller.ExecuteCommand(command);
                 TableGrid.ItemsSource = Controller.GetTable(command).DefaultView;
+            }
+        }
+
+        private void ButtonAllowSelect_OnClick(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                nameTable = NameSelectTable.Text;
+                TableGrid.ItemsSource = Controller.GetTable("select * from " + nameTable).DefaultView;
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.ToString());
+            }
+        }
+
+        private void ButtonTableActions_OnClick(object sender, RoutedEventArgs e)
+        {
+            TableActions tableActions = new TableActions();
+            tableActions.Show();
+        }
+
+        private void Update_OnClick(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (NameSelectTable.Text == "")
+                {
+                    MessageBox.Show("Укажите название таблицы");
+                    return;
+                }
+                TableGrid.ItemsSource = Controller.GetTable("select * from " + nameTable).DefaultView;
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.ToString());
             }
         }
     }

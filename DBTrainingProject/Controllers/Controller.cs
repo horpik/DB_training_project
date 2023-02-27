@@ -34,9 +34,9 @@ public static class Controller
                 MessageBox.Show("OK!");
             }
         }
-        catch (Exception e)
+        catch (Exception exception)
         {
-            MessageBox.Show(e.ToString());
+            MessageBox.Show(exception.ToString());
         }
     }
 
@@ -54,9 +54,9 @@ public static class Controller
             myDb.CloseConnection();
             return dataTable;
         }
-        catch (Exception e)
+        catch (Exception exception)
         {
-            MessageBox.Show(e.ToString());
+            MessageBox.Show(exception.ToString());
             return new DataTable();
         }
     }

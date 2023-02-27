@@ -14,6 +14,7 @@ public class Db
         try
         {
             connection = new SqlConnection(connectionString);
+            MessageBox.Show("Подключение создано");
         }
         catch (Exception e)
         {
@@ -26,7 +27,6 @@ public class Db
         try
         {
             if (connection.State == ConnectionState.Closed) connection.Open();
-            MessageBox.Show("Подключение открыто");
         }
         catch (Exception e)
         {
@@ -40,7 +40,6 @@ public class Db
         try
         {
             if (connection.State == ConnectionState.Open) connection.Close();
-            MessageBox.Show("Подключение закрыто"); 
         }
         catch (Exception e)
         {

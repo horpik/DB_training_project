@@ -16,7 +16,6 @@ public static class Controller
         try
         {
             myDb.CreateConnection(connectionString);
-            myDb.OpenConnection();
         }
         catch (Exception exception)
         {
@@ -24,22 +23,41 @@ public static class Controller
         }
     }
 
+    public static void ExecuteCommand(string commandStr)
+    {
+        try
+        {
+            myDb.OpenConnection();
+            SqlCommand sqlCommand = new SqlCommand(commandStr, myDb.GetConnection());
+            if (sqlCommand.ExecuteNonQuery() == 1)
+            {
+                MessageBox.Show("OK!");
+            }
+        }
+        catch (Exception e)
+        {
+            MessageBox.Show(e.ToString());
+        }
+    }
+
     public static DataTable GetTable(string commandStr)
     {
         try
         {
-            SqlCommand createCommand = new SqlCommand(commandStr, myDb.GetConnection());
-            createCommand.ExecuteNonQuery();
+            myDb.OpenConnection();
+            SqlCommand sqlCommand = new SqlCommand(commandStr, myDb.GetConnection());
+            sqlCommand.ExecuteNonQuery();
 
-            SqlDataAdapter dataAdp = new SqlDataAdapter(createCommand);
+            SqlDataAdapter dataAdp = new SqlDataAdapter(sqlCommand);
             DataTable dataTable = new DataTable(); // В скобках указываем название таблицы
             dataAdp.Fill(dataTable);
+            myDb.CloseConnection();
             return dataTable;
         }
-        catch (Exception exception)
+        catch (Exception e)
         {
-            MessageBox.Show(exception.ToString());
-            throw;
+            MessageBox.Show(e.ToString());
+            return new DataTable();
         }
     }
 }

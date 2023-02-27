@@ -31,15 +31,15 @@
                    VerticalAlignment="Center"
                    FontSize="20">
         </TextBlock>
-        <TextBox Name="IpAddress" 
-            Grid.Row="1" Grid.Column="0"
+        <TextBox Name="IpAddress"
+                 Grid.Row="1" Grid.Column="0"
                  Text="IP Address"
                  TextAlignment="Center"
                  VerticalAlignment="Center"
                  FontSize="17"
                  TextWrapping="Wrap">
         </TextBox>
-        <TextBox Name="Port" 
+        <TextBox Name="Port"
                  Grid.Row="1" Grid.Column="1"
                  Text="Port"
                  TextAlignment="Center"
@@ -60,7 +60,7 @@
                    VerticalAlignment="Center"
                    FontSize="20">
         </TextBlock>
-        <TextBox Name="DatabaseName" 
+        <TextBox Name="DatabaseName"
                  Grid.Row="4" Grid.ColumnSpan="2" Grid.Column="0"
                  Text="Database name"
                  TextAlignment="Center"
@@ -81,7 +81,7 @@
                    VerticalAlignment="Center"
                    FontSize="20">
         </TextBlock>
-        <TextBox Name="Login" 
+        <TextBox Name="Login"
                  Grid.Row="7" Grid.Column="0"
                  Text="Login"
                  TextAlignment="Center"
@@ -89,7 +89,7 @@
                  FontSize="17"
                  TextWrapping="Wrap">
         </TextBox>
-        <TextBox Name="Password" 
+        <TextBox Name="Password"
                  Grid.Row="7" Grid.Column="1"
                  Text="Password"
                  TextAlignment="Center"

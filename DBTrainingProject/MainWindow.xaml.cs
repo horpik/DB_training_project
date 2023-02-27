@@ -3,6 +3,8 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
+using System.Windows.Media.Imaging;
 using DBTrainingProject.Controllers;
 using DBTrainingProject.DB;
 
@@ -15,6 +17,7 @@ namespace DBTrainingProject
     {
         private string connectionString;
         private string nameTable;
+        private DataTable dataTable;
 
         public MainWindow()
         {
@@ -49,7 +52,9 @@ namespace DBTrainingProject
             try
             {
                 nameTable = NameSelectTable.Text;
-                TableGrid.ItemsSource = Controller.GetTable("select * from " + nameTable).DefaultView;
+                var tmp = Controller.GetTable("select * from " + nameTable);
+                TableGrid.ItemsSource = tmp.DefaultView;
+                dataTable = tmp;
             }
             catch (Exception exception)
             {
@@ -72,12 +77,30 @@ namespace DBTrainingProject
                     MessageBox.Show("Укажите название таблицы");
                     return;
                 }
-                TableGrid.ItemsSource = Controller.GetTable("select * from " + nameTable).DefaultView;
+
+                var tmp = Controller.GetTable("select * from " + nameTable);
+                TableGrid.ItemsSource = tmp.DefaultView;
+                dataTable = tmp;
             }
             catch (Exception exception)
             {
                 MessageBox.Show(exception.ToString());
             }
+        }
+
+        private void TableGrid_OnBeginningEdit(object? sender, DataGridBeginningEditEventArgs e)
+        {
+            DataRowView rowView = e.Row.Item as DataRowView;
+            // ContextMenuTableActions contextMenuTableActions = new ContextMenuTableActions();
+            // contextMenuTableActions.SetRowView(rowView);
+            // contextMenuTableActions.SetTableName(NameSelectTable.Text);
+            // contextMenuTableActions.Show();
+            if (rowView.Row["Image"] is string imageStr) TableImage.Source = new BitmapImage(new Uri(imageStr));
+        }
+
+        private void ExportPDF_OnClick(object sender, RoutedEventArgs e)
+        {
+            Controller.SaveToPDF(dataTable);
         }
     }
 }

@@ -42,7 +42,7 @@
                 FontSize="13">
             </TextBlock>
             <TextBox Name="NameSelectTable"
-                     Text="ForSales"
+                     Text="test"
                      FontSize="18"
                      VerticalAlignment="Bottom"
                      TextWrapping="Wrap"
@@ -96,6 +96,18 @@
                 FontSize="16">
             </TextBlock>
         </Button>
+        <Button Name="ExportPDF"
+                Grid.Column="2" Grid.Row="6" Grid.ColumnSpan="2"
+                Margin="15,15,15,15"
+                FontSize="18"
+                Click="ExportPDF_OnClick">
+            <TextBlock
+                Text="ExportPDF"
+                VerticalAlignment="Top"
+                HorizontalAlignment="Center"
+                FontSize="16">
+            </TextBlock>
+        </Button>
         <Button Name="Update"
                 Grid.Column="2" Grid.Row="7" Grid.ColumnSpan="2"
                 Margin="15,15,15,15"
@@ -109,14 +121,17 @@
             </TextBlock>
         </Button>
         <DataGrid Name="TableGrid"
-                  Grid.Column="0" Grid.Row="0" Grid.RowSpan="8" Grid.ColumnSpan="2"
-                  IsReadOnly="True"
+                  Grid.Column="0" Grid.Row="0" Grid.RowSpan="6" Grid.ColumnSpan="2"
                   HorizontalAlignment="Left"
                   VerticalContentAlignment="Center"
                   Margin="10,10,0,0"
                   VerticalAlignment="Top"
-                  AutoGenerateColumns="True">
+                  AutoGenerateColumns="True"
+                  BeginningEdit="TableGrid_OnBeginningEdit">
         </DataGrid>
+        <Image Name="TableImage"
+               Grid.Column="0" Grid.Row="6" Grid.RowSpan="2" Grid.ColumnSpan="2">
+        </Image>
 
     </Grid>
 </Window>

@@ -1,5 +1,6 @@
 ﻿using System.Data;
 using System.Windows;
+using System.Windows.Controls;
 using DBTrainingProject.Controllers;
 
 namespace DBTrainingProject;
@@ -7,7 +8,8 @@ namespace DBTrainingProject;
 public partial class ContextMenuTableActions : Window
 {
     private DataRowView _rowView;
-    private string nameTable;
+    private DataGrid _dataGrid;
+    private string _tableName;
 
     public ContextMenuTableActions()
     {
@@ -18,10 +20,14 @@ public partial class ContextMenuTableActions : Window
     {
         // throw new System.NotImplementedException();
     }
+
     private void Delete_OnClick(object sender, RoutedEventArgs e)
     {
-        // Controller.ExecuteCommand($"DELETE FROM {nameTable} WHERE 'SalesReasonID' = {_rowView[0]}");
+        Controller.ExecuteCommand(
+            $"DELETE FROM {_tableName} WHERE {_dataGrid.Columns[0]} = {_rowView[0]} AND {_dataGrid.Columns[1]} = {_rowView[1]} AND{_dataGrid.Columns[2]} = {_rowView[2]}");
     }
+
     public void SetRowView(DataRowView rowView) => _rowView = rowView;
-    public void SetTableName(string nameTable) => this.nameTable = nameTable;
+    public void SetDataGrid(DataGrid dataGrid) => _dataGrid = dataGrid;
+    public void SetTableName(string tableName) => _tableName = tableName;
 }

@@ -22,15 +22,15 @@ namespace DBTrainingProject
         public MainWindow()
         {
             InitializeComponent();
-            connectionString = "Server=CHARNELE;Database=DOROFEEV;User Id=CHARNELE\\horpi;Trusted_Connection=True;";
-            //connectionString = "Server=5.228.168.187, 13971;Database=mirea;User Id=mirea; Password=mirea;";
+            // connectionString = "Server=CHARNELE;Database=DOROFEEV;User Id=CHARNELE\\horpi;Trusted_Connection=True;";
+            // connectionString = "Server=5.228.168.187, 13971;Database=mirea;User Id=mirea; Password=mirea;";
         }
 
         private void ButtonConnection_OnClick(object sender, RoutedEventArgs e)
         {
-            // ConnectionWindow connectionWindow = new ConnectionWindow();
-            // connectionWindow.Show();
-            Controller.CreateConnection(connectionString);
+            ConnectionWindow connectionWindow = new ConnectionWindow();
+            connectionWindow.Show();
+            // Controller.CreateConnection(connectionString);
         }
 
         private void ButtonAllowCommand_OnClick(object sender, RoutedEventArgs e)
@@ -91,10 +91,9 @@ namespace DBTrainingProject
         private void TableGrid_OnBeginningEdit(object? sender, DataGridBeginningEditEventArgs e)
         {
             DataRowView rowView = e.Row.Item as DataRowView;
-            // ContextMenuTableActions contextMenuTableActions = new ContextMenuTableActions();
-            // contextMenuTableActions.SetRowView(rowView);
-            // contextMenuTableActions.SetTableName(NameSelectTable.Text);
-            // contextMenuTableActions.Show();
+            ContextMenuTableActions contextMenuTableActions = new ContextMenuTableActions();
+            contextMenuTableActions.SetRowView(rowView);
+            contextMenuTableActions.Show();
             if (rowView.Row["Image"] is string imageStr) TableImage.Source = new BitmapImage(new Uri(imageStr));
         }
 

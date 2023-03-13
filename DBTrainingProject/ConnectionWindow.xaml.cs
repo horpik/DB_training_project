@@ -13,11 +13,12 @@ public partial class ConnectionWindow : Window
     private string dbName;
     private string login;
     private string password;
+
     public ConnectionWindow()
     {
         InitializeComponent();
     }
-    
+
     private void ButtonInputIp_OnClick(object sender, RoutedEventArgs e)
     {
         ipAddress = IpAddress.Text;
@@ -40,9 +41,18 @@ public partial class ConnectionWindow : Window
 
     private void ButtonConnected_OnClick(object sender, RoutedEventArgs e)
     {
-        string connectionString = $"Server={ipAddress}, {port};Database={dbName};User Id={login}; Password={password}";
+        string connectionString;
+        if (port.ToString() == "")
+        {
+            connectionString = $"Server={ipAddress};Database={dbName};User Id={login};Trusted_Connection=True;";
+        }
+        else
+        {
+            connectionString = $"Server={ipAddress}, {port};Database={dbName};User Id={login}; Password={password}";
+        }
+
         Controller.CreateConnection(connectionString);
-        
+
         Close();
     }
 }
